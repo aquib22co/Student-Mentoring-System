@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    {% load static %}
+    background-image: url('{% static "web-back.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Ensure the background image stays fixed */
+    font-family: "Poppins", sans-serif;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.col-md-6 {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgb(7, 15, 43);
+    background: radial-gradient(circle, rgba(7, 15, 43, 1) 39%, rgba(0, 0, 0, 1) 100%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+    padding: 10px 20px;
+}
+
+.nav-bar a {
+    color: #ffffff;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-bar a:hover {
+    background-color: #535C91;
+    border-radius: 5px;
+}
+
+.ment_text {
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.inbox-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 999; /* Ensure inbox container appears on top */
+}
+
+.inbox-message {
+    padding: 5px 0;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.inbox-message:hover {
+    background-color: #f9f9f9;
+}
+
+/* Add new styles for the marks table */
+.marks-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.marks-table th,
+.marks-table td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.marks-table th {
+    background-color: #f2f2f2;
+}
+
+/* Adjusted styles to move the marks table to the right */
+.form-and-marks-container {
+    display: flex;
+}
+
+.form-container {
+    flex: 1; /* Take remaining space */
+}
+
+.marks-container {
+    flex-basis: 300px; /* Adjust width as needed */
+    margin-left: 20px; /* Add margin for spacing */
+}
+.marks-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.marks-table th,
+.marks-table td {
+    color: #333; /* Font color */
+}
+
+.marks-table th {
+    background-color: #f2f2f2; /* Header background color */
+}
+
+</style>
+
+<body>
+<div class="nav-bar">
+    <div>
+        <a href="/" class="nav-link">Home</a>
+        <a href="#">Inbox</a>
+        <a href = "{% url 'display_marks' %}"> View Marks</a>
+    </div>
+    <div style="display: flex; align-items: center;">
+        <a href="#" class="user-icon"><i class="fa fa-fw fa-user"></i></a>
+        <div class="ment_text">Mentoring System</div>
+    </div>
+    <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+</div>
+
+<div class="marks-container">
+    <h2 class="text-white mt-4">Marks Table</h2>
+    <table class="table marks-table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>User</th>
+                <th>AOA</th>
+                <th>Maths</th>
+                <th>DBMS</th>
+                <th>MP</th>
+                <th>OS</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for mark in marks_list %}
+            <tr>
+                <td>{{ mark.user }}</td>
+                <td>{{ mark.AOA }}</td>
+                <td>{{ mark.Maths }}</td>
+                <td>{{ mark.DBMS }}</td>
+                <td>{{ mark.MP }}</td>
+                <td>{{ mark.OS }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
+

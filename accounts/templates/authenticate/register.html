@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+<title>Registration Page</title>
+<style>
+  *{
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    
+  }
+  body{
+    {% load static %}
+    background-image: url('{% static "AIKTC.jpg"%}');
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(63, 94, 251, 0.404);
+    background: radial-gradient(circle, rgba(63, 94, 251, 0.461) 0%, rgba(27,26,85,1) 100%);
+    height: 100vh;
+    
+  }
+
+  .container {
+    width: 80%;
+    max-width: 600px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 20px;
+    
+    border-radius: 10px;
+    box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2); 
+    backdrop-filter: blur(14px); 
+    background-color: rgba(255, 255, 255, 0.2); 
+    padding: 10px; 
+     
+  }
+
+  .container2 h2 {
+    text-align: center;
+    
+    color: white;
+  }
+
+  .Register-form {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .Register-form input[type="text"],
+  .Register-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: inset rgba(0, 0, 0, 0.666) 0px 0px 60px -12px;
+    background-color: #23232300;
+  }
+
+  .Register-form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #1b1a55;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    outline: none;
+  }
+
+  .Register-form label,p,form{
+    color: white;
+    margin-bottom: 10px;
+  }
+
+  .Register-form input[type="submit"]:hover {
+    
+    background-color: #1b1a5579;
+  }
+
+  .alert {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  
+</style>
+</head>
+<body>
+  <div class="main-container">
+  
+      <div class="container">
+        <div class="container2">
+
+          <h2>Register</h2>
+        {% if form.errors %}
+            <div class="alert">
+                <p>There was an error with your form...</p>
+            </div>
+        {% endif %}
+  
+        <form class="Register-form" method="POST" action="{% url 'register' %}">
+            {% csrf_token %}
+  
+            <!-- Add dropdown or radio button group for selecting user type -->
+            <label for="user_type">Select user type:</label>
+            <select id="user_type" name="user_type" style="padding: 10px;
+            background-color: #ffffff;
+            color: #232323;
+            border: none;
+            border-radius: 5px;">
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+            </select>
+  
+            {{ form.as_p }}
+  
+            <input type="submit" value="Submit">
+  
+        </form>
+    </div>
+  
+        </div>
+        
+  </div>
+    
+</body>
+</html>

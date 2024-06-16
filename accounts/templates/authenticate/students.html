@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+* {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+    }
+
+    html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+   body {
+    {% load static %}
+    background-image: url('{% static "web-back.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Ensure the background image stays fixed */
+    font-family: "Poppins", sans-serif;
+}
+.container {
+        margin-top: 50px;
+    }
+
+    .col-md-6 {
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    .nav-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgb(7, 15, 43);
+        background: radial-gradient(circle, rgba(7, 15, 43, 1) 39%, rgba(0, 0, 0, 1) 100%);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        color: #ffffff;
+        padding: 10px 20px;
+    }
+
+    .nav-bar a {
+        color: #ffffff;
+        padding: 10px 15px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .nav-bar a:hover {
+        background-color: #535C91;
+        border-radius: 5px;
+    }
+
+    .ment_text {
+        font-size: 25px;
+        color: white;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+
+    .user-icon {
+        font-size: 25px;
+        color: white;
+        margin-right: 10px;
+    }
+
+    .fill-details {
+        border-radius: 10px;
+        box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
+        backdrop-filter: blur(14px);
+        background-color: rgba(255, 255, 255, 0.154);
+        padding: 10px;
+        margin-top: 20px;
+    }
+
+    .fill-details input[type="text"],
+    .fill-details input[type="date"],
+    .fill-details input[type="tel"],
+    .fill-details input[type="email"],
+    .fill-details select {
+        width: calc(100% - 20px);
+        padding: 8px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: inset rgba(0, 0, 0, 0.666) 0px 0px 60px -12px;
+        background-color: #23232300;
+        margin-bottom: 10px;
+    }
+
+    .fill-details input[type="submit"] {
+        width: calc(100% - 20px);
+        padding: 10px;
+        background-color: #1b1a55;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        outline: none;
+    }
+
+    .fill-details input[type="submit"]:hover {
+        background-color: #1b1a5579;
+    }
+
+    .profile {
+        border-radius: 10px;
+        box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
+        backdrop-filter: blur(14px);
+        background-color: rgba(255, 255, 255, 0.154);
+    }
+
+    /* Your existing styles */
+    /* Add the new styles here */
+
+    .nav-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgb(7, 15, 43);
+        background: radial-gradient(circle, rgba(7, 15, 43, 1) 39%, rgba(0, 0, 0, 1) 100%);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        color: #ffffff;
+        padding: 10px 20px;
+    }
+
+    .nav-bar a {
+        color: #ffffff;
+        padding: 10px 15px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .nav-bar a:hover {
+        background-color: #535C91;
+        border-radius: 5px;
+    }
+
+    .ment_text {
+        font-size: 25px;
+        color: white;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+
+    .user-icon {
+        font-size: 25px;
+        color: white;
+        margin-right: 10px;
+    }
+
+    .doubts-complaints-btn {
+        background-color: #1b1a55;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 15px;
+        cursor: pointer;
+        outline: none;
+        text-decoration: none;
+    }
+
+    .doubts-complaints-btn:hover {
+        background-color: #1b1a5579;
+    }
+
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .form-container .fill-details {
+        border-radius: 10px;
+        box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
+        backdrop-filter: blur(14px);
+        background-color: rgba(255, 255, 255, 0.154);
+        padding: 10px;
+        margin-top: 20px;
+    }
+
+    .form-container .fill-details input[type="submit"] {
+        width: 100%;
+    }
+
+    .form-container .fill-details h1 {
+        color: white;
+        margin-bottom: 20px;
+    }
+</style>
+
+<body>
+
+<div class="nav-bar">
+    <div>
+        <a href="/" class="nav-link">Home</a>
+        <a href="{% url 'conversation' recipient_username=request.user.username %}">Inbox</a>
+    </div>
+    <div style="display: flex; align-items: center;">
+        <a href="#" class="user-icon"><i class="fa fa-fw fa-user"></i></a>
+        <div class="ment_text">Mentoring System</div>
+    </div>
+    <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="form-and-marks-container">
+                <div class="form-container">
+                    <div class="fill-details">
+                        <h1 class="text-white mb-4">Student Registration</h1>
+                        {% if submitted %}
+                            Your Form was Submitted Successfully !!
+                        {% else %}
+                            <form action="{% url 'students' %}" method="POST">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <input type="submit" value="Submit" class="btn btn-dark mt-3">
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+             
+            </div>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'send_message' %}" class="doubts-complaints-btn">Doubts & Complaints</a>
+            <a href="{% url 'display_marks' %}" class="btn btn-primary mt-3">View Marks</a>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

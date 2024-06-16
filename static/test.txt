@@ -1,0 +1,1 @@
+this is a static file and it can be viewd by the public

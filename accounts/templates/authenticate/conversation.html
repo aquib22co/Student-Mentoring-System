@@ -1,0 +1,27 @@
+{% block content %}
+  {% if recipient %}
+    <h1>Conversation with {{ recipient.username }}</h1>
+  {% else %}
+    <h1>Inbox</h1>
+  {% endif %}
+
+  {% for message in messages %}
+    {% if message.sender == request.user %}
+      <div class="sent-message">
+        <p>{{ message.content }}</p>
+        <small>Sent at {{ message.timestamp }}</small>
+      </div>
+    {% else %}
+      <div class="received-message">
+        <p>{{ message.content }}</p>
+        <small>Received at {{ message.timestamp }}</small>
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  <form method="post" action="{% url 'send_message' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Send">
+  </form>
+{% endblock %}
